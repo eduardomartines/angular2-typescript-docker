@@ -9,6 +9,7 @@ Major adjustments:
 * Awesome **folder structure** (i.e `dist`, `stylesheets`)
 * Awesome application of the **DRY**, **YAGNI** and **KISS** principles
 * Awesome refactor so the whole project can be easily renamed, just find by `angular-quickstart` ;)
+* Removes `Wallaby` (because it is a paid service)
 
 ## running
 
