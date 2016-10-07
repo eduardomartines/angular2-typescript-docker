@@ -1,0 +1,39 @@
+version: '2'
+
+services:
+  angular-quickstart-selenium:
+    container_name: angular-quickstart-selenium
+    image: selenium/standalone-chrome:2.53.1
+    ports:
+      - 4444:4444
+  angular-quickstart-dev:
+    container_name: angular-quickstart-dev
+    image: angular-quickstart:0.1.0
+    build: .
+    expose:
+      - 3000
+      - 3001
+    ports:
+      - 3000:3000
+      - 3001:3001
+    links:
+      - angular-quickstart-selenium
+    command: npm start
+    volumes:
+      - ./app:/angular-quickstart/app
+      - ./stylesheets:/angular-quickstart/stylesheets
+      - ./index.html:/angular-quickstart/index.html
+      - ./favicon.ico:/angular-quickstart/favicon.ico
+      
+      - ./e2e:/angular-quickstart/e2e
+      - ./spec:/angular-quickstart/spec
+
+      - ./package.json:/angular-quickstart/package.json
+      - ./systemjs.config.js:/angular-quickstart/systemjs.config.js
+      - ./tsconfig.json:/angular-quickstart/tsconfig.json
+      - ./tslint.json:/angular-quickstart/tslint.json
+      - ./typings.json:/angular-quickstart/typings.json
+
+      - ./protractor.config.js:/angular-quickstart/protractor.config.js
+      - ./karma-test-shim.js:/angular-quickstart/karma-test-shim.js
+      - ./karma.conf.js:/angular-quickstart/karma.conf.js

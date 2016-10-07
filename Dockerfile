@@ -1,21 +1,25 @@
-# To build and run with Docker:
-#
-#  $ docker build -t ng-quickstart .
-#  $ docker run -it --rm -p 3000:3000 -p 3001:3001 ng-quickstart
-#
 FROM node:latest
 
-RUN mkdir -p /quickstart /home/nodejs && \
-    groupadd -r nodejs && \
-    useradd -r -g nodejs -d /home/nodejs -s /sbin/nologin nodejs && \
-    chown -R nodejs:nodejs /home/nodejs
+# NOTE: updating
+  RUN apt-get update -y
 
-WORKDIR /quickstart
-COPY package.json typings.json /quickstart/
-RUN npm install --unsafe-perm=true
+# NOTE: creating user
+  RUN mkdir -p /home/nodejs
+  RUN groupadd -r nodejs
+  RUN useradd -r -g nodejs -d /home/nodejs -s /sbin/nologin nodejs
+  RUN chown -R nodejs:nodejs /home/nodejs
 
-COPY . /quickstart
-RUN chown -R nodejs:nodejs /quickstart
-USER nodejs
+# building application
+  ENV APP_HOME /angular-quickstart
 
-CMD npm start
+  WORKDIR $APP_HOME
+  COPY package.json typings.json $APP_HOME/
+  # NOTE: it configs npm to be able to install PhantomJS
+    RUN npm config set unsafe-perm true
+    RUN npm config set strict-ssl false
+  RUN npm install
+
+# NOTE: setting application
+  COPY . $APP_HOME
+  RUN chown -R nodejs:nodejs $APP_HOME
+  USER nodejs

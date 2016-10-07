@@ -1,1 +1,7 @@
+.git*
+.editorconfig
+.travis.yml
+*.md
+LICENSE
+
 node_modules/
