@@ -2,6 +2,7 @@ angular-quickstart
 ===
 
 [![Build Status](https://travis-ci.org/eduardomartines/angular2-typescript-docker.svg?branch=master)](https://travis-ci.org/eduardomartines/angular2-typescript-docker)
+[![Dependency Status](https://gemnasium.com/badges/github.com/eduardomartines/angular2-typescript-docker.svg)](https://gemnasium.com/github.com/eduardomartines/angular2-typescript-docker)
 
 This project is based on the [official Angular 2 quickstart](https://github.com/angular/quickstart).
 
